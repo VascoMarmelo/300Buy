@@ -34,10 +34,35 @@
                 <button ng-click="login" class="btn" style="background-color: rgba(2, 171, 73)">Login</button>
             </div>     
         </div>
-        <div class="container", style="padding: 1%;">
+        <div class="container">
             {% block content %}
             {% endblock %}
-        </div>       
+        </div>
+        <footer class="bg-dark fixed-bottom" style="padding: 2%;">
+            <div class="container">
+                <div class="row row-col-10
+                    <div class="col-sm-12" style="text-align: center;">
+                        <b class="col-sm-12" style="color:aliceblue; padding-bottom: 10%;">Conheça-nos</b>
+                        <div style="border-bottom: 1px solid white; padding-bottom: 5px; padding-top: 10px;"></div>
+                        <button type="button" class="col-sm-12 pull-left" style="background-color: rgba(0,0,0,0); border-color: rgba(0,0,0,0);"><p style="color:aliceblue">Historia</p></button>
+                        <button type="button" class="col-sm-12" style="background-color: rgba(0,0,0,0); border-color: rgba(0,0,0,0);"><p style="color:aliceblue">Locais</p></button>
+                        <button type="button" class="col-sm-12" style="background-color: rgba(0,0,0,0); border-color: rgba(0,0,0,0);"><p style="color:aliceblue">Apoios</p></button>
+                    </div>         
+                </div>
+                <div class="col-sm-2">
+
+                </div>
+                <div class="col-sm-2">
+                    <div class="col-sm-12" style="text-align: center;">
+                        <b class="col-sm-12" style="color:aliceblue; padding-bottom: 10%;">Conheça-nos</b>
+                        <div style="border-bottom: 1px solid white; padding-bottom: 5px; padding-top: 10px;"></div>
+                        <button type="button" class="col-sm-12 pull-left" style="background-color: rgba(0,0,0,0); border-color: rgba(0,0,0,0);"><p style="color:aliceblue">Historia</p></button>
+                        <button type="button" class="col-sm-12" style="background-color: rgba(0,0,0,0); border-color: rgba(0,0,0,0);"><p style="color:aliceblue">Locais</p></button>
+                        <button type="button" class="col-sm-12" style="background-color: rgba(0,0,0,0); border-color: rgba(0,0,0,0);"><p style="color:aliceblue">Apoios</p></button>
+                    </div>
+                </div>  
+            </div>
+        </footer>     
     </body>
 </html>
 
@@ -46,6 +71,11 @@
     app.controller('base_pageController', function ($scope, $interval, $timeout) {
 
         $scope.searchInput = ''
+
+        $scope.productList = {
+            'list' : [],
+            'maxId': -1
+        }
 
         //Serviço AJAX do JQuery
         $scope.servicoAjax = function (type, url, data, success) {
@@ -57,12 +87,35 @@
             });
         };
 
+        $scope.servicoGetJson = function (url, data, func) {
+            $.getJSON(url, data, func);
+        };
+
         $scope.print = function(){
-            console.log($scope.searchInput)
+            console.log($scope.searchInput);
         }
 
         $scope.login = function(){
-            console.log($scope.searchInput)
+            console.log($scope.searchInput);
+        }
+
+        $scope.getProducts = function(){
+            $scope.servicoGetJson(
+                "",
+                {},
+                function(jsonData){
+
+                    for (let i in jsonData){
+                        let p = jsonData[i];
+
+                        if ($scope.productList.maxId < p.id){
+                            $scope.productList.list.push(p);
+                            $scope.productList.maxId = p.id;
+                        }                    
+                    }
+                }
+
+            )
         }
 
 

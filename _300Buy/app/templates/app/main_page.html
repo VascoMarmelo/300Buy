@@ -1,12 +1,14 @@
 {% extends 'app/base_app.html' %}
 
 {% block content %}
-
-    <h3>TODO Lists</h3>
-    <ul>
-        {% for list in user.lists.all %}
-        <li><a href="{% url 'todo_list' list.pk %}">{{ list.title }}</a></li>
-        {% endfor %}
-    </ul>
+    <div class="container" style="background-color: rgb(202, 201, 201);">
+        <div class="col-sm-1"></div>
+        <div class="col-sm-10" style="padding: 5%;">
+            <div ng-repeat="productList.list">
+                <!--Ver como os dados são dados-->
+            </div>
+        </div>
+        <div class="col-sm-1"></div>
+    </div> 
 {% endblock %}
 
