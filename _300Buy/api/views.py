@@ -4,6 +4,7 @@ from rest_framework.response import Response
 
 from app.models import Product, Category, Cart
 from .serializers import CategorySerializer, CategoryDetailSerializer, CartDetailSerializer
+from django.core.management import call_command
 
 
 class ListCATEGORY(APIView):
@@ -61,3 +62,10 @@ class DetailCART(APIView):
             serializer.save()
             return Response(serializer.data, status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    
+
+class FillDB(APIView):
+
+    def get(self, request):
+        call_command('loaddata', 'inidb.json')
+        return Response("DB restarted")

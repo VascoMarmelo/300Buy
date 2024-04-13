@@ -138,6 +138,16 @@
             "paid": 1,
             "amount": 1
         }
+    },
+    {
+        "model": "app.cart",
+        "pk": 5,
+        "fields": {
+            "user": 3,
+            "product": 2,
+            "paid": 1,
+            "amount": 3
+        }
     }
     ]
     
