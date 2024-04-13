@@ -6,6 +6,12 @@ class CategorySerializer(serializers.ModelSerializer):
         model = Category
         fields = '__all__' 
 
+class ProductDetailSerializer(serializers.ModelSerializer):
+    category = serializers.CharField(source='category.title')
+    class Meta:
+        model = Product
+        fields = ['id', 'title', 'category']      
+
 class ProductSerializer(serializers.ModelSerializer):
     class Meta:
         model = Product

@@ -3,7 +3,7 @@ from rest_framework.views import APIView, status
 from rest_framework.response import Response
 
 from app.models import Product, Category, Cart
-from .serializers import CategorySerializer, CategoryDetailSerializer, CartDetailSerializer
+from .serializers import CategorySerializer, ProductDetailSerializer, CategoryDetailSerializer, CartDetailSerializer
 from django.core.management import call_command
 
 
@@ -21,6 +21,22 @@ class ListCATEGORY(APIView):
             serializer.save()
             return Response(serializer.data, status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    
+
+class ListPRODUCT(APIView):
+    """Details a PRODUCT lists."""
+
+    def get(self, request):
+        product = Product.objects
+        serializer = ProductDetailSerializer(product, many=True)
+        return Response(serializer.data)
+
+    def post(self, request):
+        serializer = ProductDetailSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)    
     
 
 class DetailCATEGORY(APIView):
