@@ -1,20 +1,22 @@
 from rest_framework import serializers
-from app.models import List, Item
+from app.models import Product, Category, Cart
 
-#ANTIGO
-class ListSerializer(serializers.ModelSerializer):
+class CategorySerializer(serializers.ModelSerializer):
     class Meta:
-        model = List
-        fields = '__all__' #['title'] -> Só mete o titulo
-#ANTIGO
-class ItemSerializer(serializers.ModelSerializer):
+        model = Category
+        fields = '__all__' 
+
+class ProductSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Item
-        fields = '__all__' #['title'] -> Só mete o titulo
-#ANTIGO
-class ListDetailSerializer(serializers.ModelSerializer):
-    items = ItemSerializer(many=True, read_only=True)
+        model = Product
+        fields = '__all__'
+
+class CategoryDetailSerializer(serializers.ModelSerializer):
+    products = ProductSerializer(many=True, read_only=True)
     class Meta:
-        model = List
-        fields = ['id', 'title', 'items']
+        model = Category
+        fields = ['id', 'title', 'products']
+
+
+
 

@@ -1,0 +1,125 @@
+[
+    {
+        "model": "app.user",
+        "pk": 1,
+        "fields": {
+            "password": "pbkdf2_sha256$720000$G44EDhZx8ML34B0Usv9shO$KNopxJMzTYrpVQW9RnCyR0phVJlcRjfiQqTs3ymCoxs=",
+            "last_login": null,
+            "is_superuser": false,
+            "username": "tak",
+            "first_name": "Takumi",
+            "last_name": "Fujiwara",
+            "email": "Tofu@shop.org",
+            "is_staff": false,
+            "is_active": true,
+            "date_joined": "2024-03-01T21:36:39.939Z",
+            "groups": [],
+            "user_permissions": []
+        }
+    },
+    {
+        "model": "app.user",
+        "pk": 2,
+        "fields": {
+            "password": "pbkdf2_sha256$720000$G44EDhZx8ML34B0Usv9shO$KNopxJMzTYrpVQW9RnCyR0phVJlcRjfiQqTs3ymCoxs=",
+            "last_login": "2024-03-05T10:50:20.328Z",
+            "is_superuser": true,
+            "username": "admin",
+            "first_name": "",
+            "last_name": "",
+            "email": "admin@example.com",
+            "is_staff": true,
+            "is_active": true,
+            "date_joined": "2024-03-05T10:17:47.461Z",
+            "groups": [],
+            "user_permissions": []
+        }
+    },
+    {
+        "model": "app.category",
+        "pk": 1,
+        "fields": {
+            "title": "food"
+        }
+    },
+    {
+        "model": "app.category",
+        "pk": 2,
+        "fields": {
+            "title": "decoration"
+        }
+    },
+    {
+        "model": "app.product",
+        "pk": 1,
+        "fields": {
+            "title": "apple",
+            "category": 1
+        }
+    },
+    {
+        "model": "app.product",
+        "pk": 2,
+        "fields": {
+            "title": "tofu",
+            "category": 1
+        }
+    },
+    {
+        "model": "app.product",
+        "pk": 3,
+        "fields": {
+            "title": "rice",
+            "category": 1
+        }
+    },
+    {
+        "model": "app.product",
+        "pk": 4,
+        "fields": {
+            "title": "photo frame",
+            "category": 2
+        }
+    },
+    {
+        "model": "app.cart",
+        "pk": 1,
+        "fields": {
+            "client": 1,
+            "product": 1,
+            "paid": 1,
+            "amount": 2
+        }
+    },
+    {
+        "model": "app.cart",
+        "pk": 2,
+        "fields": {
+            "client": 1,
+            "product": 2,
+            "paid": 1,
+            "amount": 1
+        }
+    },
+    {
+        "model": "app.cart",
+        "pk": 3,
+        "fields": {
+            "client": 1,
+            "product": 3,
+            "paid": 1,
+            "amount": 1
+        }
+    },
+    {
+        "model": "app.cart",
+        "pk": 4,
+        "fields": {
+            "client": 1,
+            "product": 4,
+            "paid": 1,
+            "amount": 1
+        }
+    }
+    ]
+    

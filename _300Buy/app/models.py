@@ -10,7 +10,7 @@ class User(AbstractUser):
         return f'{self.first_name} {self.last_name}'
 
 
-class Categeory(models.Model):
+class Category(models.Model):
     title = models.CharField(max_length=100)
 
     def __str__(self):
@@ -19,7 +19,7 @@ class Categeory(models.Model):
 
 class Product(models.Model):
     title = models.CharField(max_length=100)
-    category = models.ForeignKey(Categeory, on_delete=models.CASCADE, related_name='products')
+    category = models.ForeignKey(Category, on_delete=models.CASCADE, related_name='products')
 
     def __str__(self):
         return f'{self.title}'
