@@ -1,19 +1,38 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <meta charset="UTF-8">
+        <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1">
         <title>300Buy</title>
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script> 
         <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     </head>
     <body>
-        <div class="navbar bg-body-tertiary d-flex justify-content-center" data-bs-theme="light">
-            <div class="container-fluid">
+        <div class="navbar bg-body-tertiary d-flex " data-bs-theme="dark" ng-app="base_page" ng-controller="base_pageController" style=>
+            <div class="container-fluid col-sm-2">
                 {% load static %}
-                <img src="{% static 'svg/logo-color3.svg' %}" class="custom-logo" style="width: 20em; height: 10em;">
+                <img src="{% static 'svg/logo-white2.svg' %}" class="custom-logo" style="width: 10em; height: 5em;">
                 <!--<p>Current User: {{user}} <a href="{#% url 'app_logout' %}">Logout</a></p>-->
-            </div>   
+            </div>
+            <div class="container-fluid col-sm-3">
+                
+            </div>
+            <div class="container col-sm-4" style="text-align:center;">
+                <input type="text" ng-model="searchInput" class="col-sm-9" style="height: 2.5em;">
+                <button ng-click="print()" type="btn" class="btn container" style="width: 3em; height: 2.5em; background-color: rgba(2, 171, 73)">
+                    <svg style="display: block; margin: auto" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMin" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+                        <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0"/>
+                    </svg>
+                </button>
+            </div>
+            <div class="container-fluid col-sm-2">
+                
+            </div>    
+            <div class="container-fluid col-sm-1">
+                <button ng-click="login" class="btn" style="background-color: rgba(2, 171, 73)">Login</button>
+            </div>     
         </div>
         <div class="container", style="padding: 1%;">
             {% block content %}
@@ -21,3 +40,35 @@
         </div>       
     </body>
 </html>
+
+<script>
+    var app = angular.module('base_page', []);
+    app.controller('base_pageController', function ($scope, $interval, $timeout) {
+
+        $scope.searchInput = ''
+
+        //Serviço AJAX do JQuery
+        $scope.servicoAjax = function (type, url, data, success) {
+            $.ajax({
+                type: type,
+                url: url,
+                data: data,
+                success: success
+            });
+        };
+
+        $scope.print = function(){
+            console.log($scope.searchInput)
+        }
+
+        $scope.login = function(){
+            console.log($scope.searchInput)
+        }
+
+
+
+    })
+
+    
+
+</script>

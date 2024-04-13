@@ -6,4 +6,4 @@ from .models import User
 
 
 def index(request):
-    return render(request, template_name='app/app.html')
+    return render(request, template_name='app/main_page.html')
