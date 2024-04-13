@@ -1,7 +1,6 @@
-<head>
+{% extends 'app/base_app.html' %}
 
-</head>
-<body>
+{% block content %}
     <h1>TodoWise Login</h1>
 
     <form method="post", action="{% url 'app_login' %}">
@@ -10,6 +9,8 @@
         Password: <input type="password", name="password"><br/>
         <input type="submit">
     </form>
-</body>
+{% endblock %}
+
+
 
 

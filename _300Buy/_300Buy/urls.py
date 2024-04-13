@@ -19,9 +19,8 @@ from django.urls import path, include
 from app.views import index
 
 urlpatterns = [
-    path('', index),
+    path('', include('app.urls')),
     path('admin/', admin.site.urls),
-    path('app/', include('app.urls')),
     path('api/', include('api.urls')),
     path('api/auth', include('rest_framework.urls')),
 ]
