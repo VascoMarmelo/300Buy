@@ -18,5 +18,11 @@ class CategoryDetailSerializer(serializers.ModelSerializer):
         fields = ['id', 'title', 'products']
 
 
+class CartDetailSerializer(serializers.ModelSerializer):
+    cart_products = ProductSerializer(source='product')
+    class Meta:
+        model = Cart
+        fields = ['user', 'id', 'amount', 'paid', 'cart_products']
+
 
 

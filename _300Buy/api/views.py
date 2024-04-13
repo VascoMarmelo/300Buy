@@ -3,7 +3,7 @@ from rest_framework.views import APIView, status
 from rest_framework.response import Response
 
 from app.models import Product, Category, Cart
-from .serializers import CategorySerializer, CategoryDetailSerializer
+from .serializers import CategorySerializer, CategoryDetailSerializer, CartDetailSerializer
 
 
 class ListCATEGORY(APIView):
@@ -16,6 +16,47 @@ class ListCATEGORY(APIView):
 
     def post(self, request):
         serializer = CategorySerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    
+
+class DetailCATEGORY(APIView):
+    """Details a CATEGORY list"""
+
+    def get(self, request, category_id):
+        category = get_object_or_404(Category, pk=category_id)
+        serializer = CategoryDetailSerializer(category, many=False)
+        return Response(serializer.data)
+
+    '''
+    def delete(self, request, category_id):
+        category = get_object_or_404(Category, pk=category_id)
+        category.delete()
+        return Response(status=status.HTTP_204_NO_CONTENT)
+    '''
+
+    def put(self, request, category_id):
+        category = get_object_or_404(Category, pk=category_id)
+        serializer = CategoryDetailSerializer(category, data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    
+
+class DetailCART(APIView):
+    """Details a CART list"""
+
+    def get(self, request):
+        cart = Cart.objects.filter(user=request.user)
+        serializer = CartDetailSerializer(cart, many=True)
+        return Response(serializer.data)
+
+    def post(self, request):
+        request.data['user'] = request.user.id
+        serializer = CartDetailSerializer(data=request.data)
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data, status.HTTP_201_CREATED)

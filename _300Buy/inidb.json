@@ -36,6 +36,24 @@
         }
     },
     {
+        "model": "app.user",
+        "pk": 3,
+        "fields": {
+            "password": "pbkdf2_sha256$720000$G44EDhZx8ML34B0Usv9shO$KNopxJMzTYrpVQW9RnCyR0phVJlcRjfiQqTs3ymCoxs=",
+            "last_login": null,
+            "is_superuser": false,
+            "username": "kan",
+            "first_name": "Kanata",
+            "last_name": "Katigiri",
+            "email": "Mf@ghost.org",
+            "is_staff": false,
+            "is_active": true,
+            "date_joined": "2024-03-01T21:36:39.939Z",
+            "groups": [],
+            "user_permissions": []
+        }
+    },
+    {
         "model": "app.category",
         "pk": 1,
         "fields": {
@@ -85,7 +103,7 @@
         "model": "app.cart",
         "pk": 1,
         "fields": {
-            "client": 1,
+            "user": 1,
             "product": 1,
             "paid": 1,
             "amount": 2
@@ -95,7 +113,7 @@
         "model": "app.cart",
         "pk": 2,
         "fields": {
-            "client": 1,
+            "user": 1,
             "product": 2,
             "paid": 1,
             "amount": 1
@@ -105,7 +123,7 @@
         "model": "app.cart",
         "pk": 3,
         "fields": {
-            "client": 1,
+            "user": 1,
             "product": 3,
             "paid": 1,
             "amount": 1
@@ -115,7 +133,7 @@
         "model": "app.cart",
         "pk": 4,
         "fields": {
-            "client": 1,
+            "user": 1,
             "product": 4,
             "paid": 1,
             "amount": 1
