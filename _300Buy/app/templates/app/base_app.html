@@ -13,7 +13,7 @@
         <div class="navbar bg-body-tertiary d-flex " data-bs-theme="dark" ng-app="base_page" ng-controller="base_pageController" style=>
             <div class="container-fluid col-sm-2">
                 {% load static %}
-                <img src="{% static 'svg/logo-white2.svg' %}" class="custom-logo" style="width: 10em; height: 5em;">
+                <img ng-click="homepage()", src="{% static 'svg/logo-white2.svg' %}" class="custom-logo" style="width: 10em; height: 5em;">
                 <!--<p>Current User: {{user}} <a href="{#% url 'app_logout' %}">Logout</a></p>-->
             </div>
             <div class="container-fluid col-sm-3">
@@ -136,7 +136,9 @@
             $window.location.href = '/login';
         }
 
-
+        $scope.homepage = function(){
+            $window.location.href = '/';
+        }
 
     })
 
