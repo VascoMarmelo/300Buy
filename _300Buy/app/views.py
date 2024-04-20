@@ -21,6 +21,21 @@ def app_login(request):
     return render(request, template_name='app/login.html')
 
 
+def app_register(request):
+    if request.method == 'POST':
+        user_email = request.POST.get('email')
+        user_first_name = request.POST.get('first name')
+        user_last_name = request.POST.get('last name')
+        user_username = request.POST.get('username')
+        user_password = request.POST.get('password')
+        user = User(email=user_email, first_name=user_first_name, last_name=user_last_name, username=user_username, password=user_password)
+        user.save()
+        if user is not None:
+            login(request, user)
+            return redirect('app_index')
+    return render(request, template_name='app/register.html')
+
+
 def app_logout(request):
     logout(request)
     return redirect('app_login')
