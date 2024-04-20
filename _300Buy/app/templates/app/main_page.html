@@ -4,8 +4,10 @@
     <div class="container" style="background-color: rgb(202, 201, 201);">
         <div class="col-sm-1"></div>
         <div class="col-sm-10" style="padding: 5%;">
-            <div ng-repeat="productList.list">
-                <!--Ver como os dados são dados-->
+            <div ng-repeat="p in productList.list" class="row">
+                <div>
+                    <p>{{p | json}}</p>
+                </div>
             </div>
         </div>
         <div class="col-sm-1"></div>
