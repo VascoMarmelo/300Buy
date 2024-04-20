@@ -1,29 +1,34 @@
-function App() {
-    let productsList = [];
 
-    fetch("api/products").then(response => response.json())
-    .then(data => {
-        console.log(data);
-        
-        for (let p in data){
-          productsList.push(p);
-        }
-      })
-    .then(data => {return (
-      <div>
-        {productsList[0].title}
-      </div>
-    )});
+function Products() {
+    const [productsList, setProductsList] = React.useState([]);
+    React.useEffect(() => 
+        fetch("api/products")
+        .then(response => response.json())
+        .then(json => {
+          console.log(json);
+
+          setProductsList(json);
+      }), []);
+
+
 
     return (
       <div>
-        "OLA"
+        {productsList.map(product => {
+          return <Product product={product} />
+        })}
       </div>
     );
   
     
 }
 
+function Product({product}){
+  return <p>{product.title}</p>
+}
+
 
 const domContainer = document.querySelector('#teste');
-ReactDOM.render(<App />, domContainer);
+ReactDOM.render(<Products />, domContainer);
+
+
