@@ -1,5 +1,6 @@
 from django.shortcuts import render, HttpResponse, redirect, get_object_or_404
 from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.hashers import make_password
 from .models import User
 
 # Create your views here.
@@ -28,7 +29,8 @@ def app_register(request):
         user_last_name = request.POST.get('last name')
         user_username = request.POST.get('username')
         user_password = request.POST.get('password')
-        user = User(email=user_email, first_name=user_first_name, last_name=user_last_name, username=user_username, password=user_password)
+        hashed_password = make_password(user_password)
+        user = User(email=user_email, first_name=user_first_name, last_name=user_last_name, username=user_username, password=hashed_password)
         user.save()
         if user is not None:
             login(request, user)
