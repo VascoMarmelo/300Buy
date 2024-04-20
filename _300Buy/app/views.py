@@ -1,13 +1,8 @@
 from django.shortcuts import render, HttpResponse, redirect, get_object_or_404
-<<<<<<< HEAD
-# from django.contrib.auth import authenticate, login, logout
-from .models import User
-=======
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.hashers import make_password
 
 from .models import User, Category, Product, Cart
->>>>>>> 9a9e65d51987a2891c337a56e87294a0a61c9220
 
 # Create your views here.
 
@@ -19,9 +14,6 @@ def app_login(request):
     return render(request, template_name='app/login.html')
 
 def app_register(request):
-<<<<<<< HEAD
-    return render(request, template_name='app/login.html')
-=======
     if request.method == 'POST':
         user_email = request.POST.get('email')
         user_first_name = request.POST.get('first name')
@@ -51,4 +43,4 @@ def add_product(request, category_id):
         product.save()
         return redirect('app_index') # Temporário
 
->>>>>>> 9a9e65d51987a2891c337a56e87294a0a61c9220
+
