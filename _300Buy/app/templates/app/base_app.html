@@ -3,44 +3,41 @@
     <head>
         <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1">
         <title>300Buy</title>
+        <script src="https://unpkg.com/react@17/umd/react.development.js"></script>
+        <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+        <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script> 
-        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     </head>
     <body>
-        <div class="navbar bg-body-tertiary d-flex " data-bs-theme="dark" ng-app="base_page" ng-controller="base_pageController" style=>
+        <div class="navbar bg-body-tertiary d-flex " data-bs-theme="dark">
             <div class="container-fluid col-sm-2">
                 {% load static %}
-                <img ng-click="homepage()", src="{% static 'svg/logo-white2.svg' %}" class="custom-logo" style="width: 10em; height: 5em;">
+                <img src="{% static 'svg/logo-white2.svg' %}" class="custom-logo" style="width: 10em; height: 5em;">
                 <!--<p>Current User: {{user}} <a href="{#% url 'app_logout' %}">Logout</a></p>-->
             </div>
             <div class="container-fluid col-sm-3">
                 
             </div>
             <div class="container col-sm-4" style="text-align:center;">
-                <input type="text" ng-model="searchInput" class="col-sm-9" style="height: 2.5em;">
-                <button ng-click="print()" type="btn" class="btn container" style="width: 3em; height: 2.5em; background-color: rgba(2, 171, 73)">
+                <input type="text" class="col-sm-9" style="height: 2.5em;">
+                <button type="btn" class="btn container" style="width: 3em; height: 2.5em; background-color: rgba(2, 171, 73)">
                     <svg style="display: block; margin: auto" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMin" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
                         <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0"/>
                     </svg>
                 </button>
             </div>
             <div class="container-fluid col-sm-2">
-                {{productList.list}}
             </div>    
             <div class="container-fluid col-sm-1">
-                <button ng-click="loginPage()" class="btn" style="background-color: rgba(2, 171, 73)">Login</button>
+                <button class="btn" style="background-color: rgba(2, 171, 73)">Login</button>
             </div>     
         </div>
         
         <div class="container">
             {% block content %}
             {% endblock %}
-
-
-            
         </div>
         <footer class="bg-dark fixed-bottom" style="padding: 2%;">
             <div class="container">
@@ -80,76 +77,7 @@
                         </div>
                     </div>     
                 </div>
-        </footer>     
+        </footer>
+        <script type="text/babel" src="{% static 'polls/main_page.js' %}" defer></script>     
     </body>
 </html>
-
-<script>
-    var app = angular.module('base_page', []);
-    app.controller('base_pageController', function ($scope, $interval, $timeout, $window) {
-
-        $scope.searchInput = ''
-
-        $scope.productList = {
-            'list' : [],
-            'maxId': -1
-        }
-
-        //Serviço AJAX do JQuery
-        $scope.servicoAjax = function (type, url, data, success) {
-            $.ajax({
-                type: type,
-                url: url,
-                data: data,
-                success: success
-            });
-        };
-
-        $scope.servicoGetJson = function (url, data, func) {
-            $.getJSON(url, data, func);
-        };
-
-        $scope.print = function(){
-            console.log($scope.searchInput);
-        }
-
-        $scope.login = function(){
-            console.log($scope.searchInput);
-        }
-
-        $scope.getProducts = function(){
-            $scope.servicoGetJson(
-                "/api/products",
-                {},
-                function(jsonData){
-
-                    console.log("Enter");
-
-                    for (let i in jsonData){
-                        let p = jsonData[i];
-
-                        if ($scope.productList.maxId < p.id){
-                            $scope.productList.list.push(p);
-                            $scope.productList.maxId = p.id;
-                        }   
-                    }
-                }
-
-            )
-        }
-
-        $scope.loginPage = function(){
-            $window.location.href = '/login';
-        }
-
-        $scope.homepage = function(){
-            $window.location.href = '/';
-        }
-
-        $scope.getProducts()
-
-    })
-
-    
-
-</script>
