@@ -30,6 +30,7 @@ def app_register(request):
         user_username = request.POST.get('username')
         user_password = request.POST.get('password')
         hashed_password = make_password(user_password)
+        
         user = User(email=user_email, first_name=user_first_name, last_name=user_last_name, username=user_username, password=hashed_password)
         user.save()
         if user is not None:
