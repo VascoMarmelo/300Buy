@@ -10,23 +10,29 @@ function Products() {
           setProductsList(json);
       }), []);
 
-
-
     return (
-      <div>
-        {productsList.map(product => {
-          return <Product product={product} />
-        })}
+      <div className="container">
+        <div className="row">
+          {productsList.map(product => {
+            return <Product key={product.id} product={product} />
+          })}
+        </div>
       </div>
     );
-  
-    
 }
 
 function Product({product}){
-  return <p>{product.title}</p>
-}
 
+
+  return (
+    <div className="col-sm" style={{'display': 'flex', 'justifyContent': 'center', 'alignItems': 'center', textAlign: 'center'}}>
+      <div style={{display: 'flex', flexDirection: 'column'}}>
+        <img src="https://i.imgur.com/FKLhQ3T.png" style={{height: '10em', width: '10em'}}></img>
+        <p style={{'justifyContent': 'center'}} className="row">{product.title}</p>
+      </div>   
+    </div>
+  )
+}
 
 const domContainer = document.querySelector('#teste');
 ReactDOM.render(<Products />, domContainer);

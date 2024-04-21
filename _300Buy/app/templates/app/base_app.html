@@ -10,28 +10,27 @@
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script> 
+
+        
     </head>
     <body>
         <div class="navbar bg-body-tertiary d-flex " data-bs-theme="dark">
-            <div class="container-fluid col-sm-2">
-                <img src="{% static 'svg/logo-white2.svg' %}" class="custom-logo" style="width: 10em; height: 5em;">
-                <!--<p>Current User: {{user}} <a href="{#% url 'app_logout' %}">Logout</a></p>-->
+            <div class="container-fluid col-sm-2" id="logo">
+
             </div>
             <div class="container-fluid col-sm-3">
                 
             </div>
             <div class="container col-sm-4" style="text-align:center;">
-                <input type="text" class="col-sm-9" style="height: 2.5em;">
-                <button type="btn" class="btn container" style="width: 3em; height: 2.5em; background-color: rgba(2, 171, 73)">
-                    <svg style="display: block; margin: auto" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMin" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
-                        <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0"/>
-                    </svg>
-                </button>
+                <input id="searchBoxMain" type="text" class="col-sm-9" style="height: 2.5em;">
+                <div id="searchButton">
+
+                </div>
             </div>
             <div class="container-fluid col-sm-2">
             </div>    
-            <div class="container-fluid col-sm-1">
-                <button class="btn" style="background-color: rgba(2, 171, 73)">Login</button>
+            <div class="container-fluid col-sm-1" id="loginButton">
+
             </div>     
         </div>
         
@@ -78,6 +77,6 @@
                     </div>     
                 </div>
         </footer>
-        <script type="text/babel" src="{% static 'polls/main_page.js' %}" defer></script>     
+        <script type="text/babel" src="{% static 'polls/base_page.js' %}" defer></script>  
     </body>
 </html>

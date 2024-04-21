@@ -1,5 +1,7 @@
 {% extends 'app/base_app.html' %}
 
+{% load static %}
+
 {% block content %}
     <div class="container" style="background-color: rgb(202, 201, 201);">
         <div class="col-sm-1"></div>
@@ -10,5 +12,6 @@
         </div>
         <div class="col-sm-1"></div>
     </div> 
+    <script type="text/babel" src="{% static 'polls/main_page.js' %}" defer></script>     
 {% endblock %}
 
