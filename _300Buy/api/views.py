@@ -36,8 +36,8 @@ class ListPRODUCT(APIView):
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data, status.HTTP_201_CREATED)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)    
-    
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+            
 
 class DetailPRODUCT(APIView):
     """Details a CATEGORY list"""
@@ -55,6 +55,15 @@ class DetailPRODUCT(APIView):
             return Response(serializer.data)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
+
+class SearchPRODUCT(APIView):
+    """Details a PRODUCT lists."""
+
+    def get(self, request, product_title):
+        products = Product.objects.filter(title__startswith=product_title)
+        serializer = ProductDetailSerializer(products, many=True)
+        return Response(serializer.data)
+ 
 
 class DetailCATEGORY(APIView):
     """Details a CATEGORY list"""
