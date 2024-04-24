@@ -1,8 +1,13 @@
 
 function Products() {
     const [productsList, setProductsList] = React.useState([]);
+    const searchParams = new URLSearchParams(window.location.search);
+    const productFilter = searchParams.get('filter');
+
+    //Adicionar o filtro correto
+
     React.useEffect(() => 
-        fetch("api/products")
+        fetch("api/products/")
         .then(response => response.json())
         .then(json => {
           console.log(json);
@@ -35,6 +40,6 @@ function Product({product}){
 }
 
 const domContainer = document.querySelector('#teste');
-ReactDOM.render(<Products />, domContainer);
+ReactDOM.render(<Products/>, domContainer);
 
 

@@ -41,9 +41,7 @@ function SearchBar({ href }){
 function SearchButton({ href }){
 
     const btnClicked = () => {
-        window.location.href = href;
-        document.getElementById('searchBoxMain').value = searchText;
-        console.log(searchText);
+        window.location.href = "/?filter=" + document.getElementById('searchBoxMain').value;
     };
 
     return (
