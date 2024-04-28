@@ -1,19 +1,24 @@
 {% extends 'app/base_app.html' %}
 
 {% block content %}
-    <h1>TodoWise Register</h1>
 
-    <form method="post", action="{% url 'app_register' %}">
-        {% csrf_token %}
-        Email: <input type="email", name="email"><br/>
-        First name: <input type="text", name="first name"><br/>
-        Last name: <input type="text", name="last name"><br/>
-        Username: <input type="text", name="username"><br/>
-        Password: <input type="password", name="password"><br/>
-        <input type="submit">
-    </form>
+<div  style="background-color: rgb(202, 201, 201); min-height: 50em; padding: 5%">
+    <div style="background-color: rgb(220, 220, 220); padding: 3%; box-shadow: 5px 10px 5px rgba(0, 0, 0, 0.2);">
+        <h1>Register</h1>
+            <form method="post", action="{% url 'app_register' %}">
+                {% csrf_token %}
+                <div>
+                    <label class="form-label">Email</label><input type="email" class="form-control" name="email"><br/>
+                    <label class="form-label">First name</label><input type="text" class="form-control" name="first name"><br/>
+                    <label class="form-label">Last name</label><input type="text" class="form-control" name="last name"><br/>
+                    <label class="form-label">Username</label><input type="text" class="form-control" name="username"><br/>
+                    <label class="form-label">Password</label><input type="password" class="form-control" name="password"><br/>
+                    <input type="submit">
+                </div>    
+            </form>
+        </div>   
+    </div>
 {% endblock %}
-
 
 
 
