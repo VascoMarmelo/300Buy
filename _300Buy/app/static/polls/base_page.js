@@ -61,3 +61,6 @@ ReactDOM.render(<RedirectLogo href={'/'} />, domContainerLogoImg);
 
 const domContainerSearchFunction = document.querySelector('#searchBar');
 ReactDOM.render(<SearchFunction href={'/'} />, domContainerSearchFunction);
+
+const domContainerCart = document.querySelector('#searchBar');
+ReactDOM.render(<SearchFunction href={'/'} />, domContainerSearchFunction);
