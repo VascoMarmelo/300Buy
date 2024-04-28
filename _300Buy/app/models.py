@@ -19,6 +19,7 @@ class Category(models.Model):
 
 class Product(models.Model):
     title = models.CharField(max_length=100)
+    image = models.CharField(max_length=100)
     category = models.ForeignKey(Category, on_delete=models.CASCADE, related_name='products')
 
     def __str__(self):
