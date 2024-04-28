@@ -102,7 +102,7 @@ class DetailCART(APIView):
     
 
 class FillDB(APIView):
-    """Restarts DB"""
+    """Restarts DB to original state"""
 
     def get(self, request):
         call_command('loaddata', 'inidb.json')
