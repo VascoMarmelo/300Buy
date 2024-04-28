@@ -45,7 +45,6 @@ class DetailPRODUCT(APIView):
     """Details a product by ID"""
 
     def get(self, request, product_id):
-        product = get_object_or_404(Product, pk=product_id)
         serializer = ProductDetailSerializer(product, many=False)
         return Response(serializer.data)
     

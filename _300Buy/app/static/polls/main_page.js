@@ -57,7 +57,14 @@ function Product({product}){
 function AddToCart(product, cart){
 
   const btnClicked = () => {
-    fetch("api/carts", {method: "POST", body: JSON.stringify(product)}).then(console.log("Enviado"))
+    fetch("api/carts", {method: "POST", body: JSON.stringify(product)}).then(response => {
+      if (!response.ok){
+        window.location.href = "/login";
+      }
+      else{
+        console.log("Tudo good");
+      }
+    })
   }
 
   return (
