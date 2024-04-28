@@ -1,14 +1,21 @@
 {% extends 'app/base_app.html' %}
 
 {% block content %}
-    <h1>TodoWise Login</h1>
+    
 
-    <form method="post", action="{% url 'app_login' %}">
-        {% csrf_token %}
-        Username: <input type="text", name="username"><br/>
-        Password: <input type="password", name="password"><br/>
-        <input type="submit">
-    </form>
+    <div  style="background-color: rgb(202, 201, 201); min-height: 50em; padding: 5%">
+        <div style="background-color: rgb(220, 220, 220); padding: 3%; box-shadow: 5px 10px 5px rgba(0, 0, 0, 0.2);">
+            <h1>Login</h1>
+            <form method="post", action="{% url 'app_login' %}">
+                {% csrf_token %}
+                <div>
+                    <label class="form-label">Username</label><input type="text" class="form-control" name="username"><br/>
+                    <label class="form-label">Password</label><input type="password" class="form-control" name="password"><br/>   
+                    <input type="submit">
+                </div>     
+            </form>
+        </div>   
+    </div>
 {% endblock %}
 
 

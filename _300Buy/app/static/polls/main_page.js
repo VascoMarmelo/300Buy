@@ -49,6 +49,7 @@ function Product({product}){
           </div>     
         </div>
       </div>
+      
   )
 }
 
@@ -86,7 +87,7 @@ function Cart({username}){
           <div className="row d-flex justify-content-center">
               {       
               cart.map(cartItemData => {
-                  return <CartItem key={cartItemData.id} product={cartItemData.product} />
+                  return <CartItem key={cartItemData.id} product={cartItemData.cart_products} />
               })}
           </div>
       </div>
