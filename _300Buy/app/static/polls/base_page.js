@@ -38,6 +38,21 @@ function SearchBar({ href }){
     )
 }
 
+function LogoutButton(){
+
+    const btnClicked = () => {
+        fetch("/logout")
+        .then(response => response.json())
+        .then(json => {
+          console.log(json);
+      })
+    }
+
+    return (
+        <button onClick={btnClicked} className="btn" style={{width: "6em", height: "2.5em", backgroundColor: "rgba(2, 171, 73)"}}>Logout</button>
+    )
+}
+
 function SearchButton({ href }){
 
     const btnClicked = () => {
@@ -53,8 +68,16 @@ function SearchButton({ href }){
     )
 }
 
-const domContainerLoginBtn = document.querySelector('#loginButton');
-ReactDOM.render(<RedirectButton href={'/login'} />, domContainerLoginBtn);
+
+const domContainerLoginBtn = document.querySelector('#loginButton')
+if (domContainerLoginBtn){
+    ReactDOM.render(<RedirectButton href={'/login'} />, domContainerLoginBtn);
+}
+
+const domContainerLogoutBtn = document.querySelector('#logoutButton')
+if (domContainerLogoutBtn){
+    ReactDOM.render(<LogoutButton/>, domContainerLogoutBtn);
+}
 
 const domContainerLogoImg = document.querySelector('#logo');
 ReactDOM.render(<RedirectLogo href={'/'} />, domContainerLogoImg);

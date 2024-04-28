@@ -18,16 +18,23 @@
             <div class="container-fluid col-sm-2" id="logo">
 
             </div>
-            <div class="container-fluid col-sm-3">
+            <div class="container-fluid col-sm-2">
                 
             </div>
             <div id="searchBar" class="row col-sm-4">
             </div>
             <div class="container-fluid col-sm-2">
-            </div>    
-            <div class="container-fluid col-sm-1" id="loginButton">
-
+            </div>  
+            {% if request.user.is_authenticated %}  
+            <div class="col-sm-1 row d-flex">
+                <p style="color:aliceblue">User: {{ user.username }}</p> 
+                <div class="container-fluid" id="logoutButton">
             </div>     
+            </div>
+            {% else %}            
+            <div class="container-fluid col-sm-1" id="loginButton">
+            </div>  
+            {% endif %}
         </div>
         
         <div class="container">
