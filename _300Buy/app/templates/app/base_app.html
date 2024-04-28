@@ -26,9 +26,9 @@
             <div class="container-fluid col-sm-2">
             </div>  
             {% if request.user.is_authenticated %}  
-            <div class="col-sm-1 row d-flex">
+            <div class="col-sm-1 row">
                 <p style="color:aliceblue">User: {{ user.username }}</p> 
-                <div class="container-fluid" id="logoutButton">
+                <div id="logoutButton">
             </div>     
             </div>
             {% else %}            
