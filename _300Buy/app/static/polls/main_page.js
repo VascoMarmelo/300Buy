@@ -54,7 +54,7 @@ function Product({product}){
 }
 
 
-function AddToCart(product){
+function AddToCart(product, cart){
 
   const btnClicked = () => {
     fetch("api/carts", {method: "POST", body: JSON.stringify(product)}).then(console.log("Enviado"))
@@ -65,7 +65,7 @@ function AddToCart(product){
   )
 }
 
-function Cart({username}){
+function CartDisplay({username}){
 
   const [cart, setCart] = React.useState([]);
 
@@ -108,9 +108,15 @@ function CartItem({product}){
 }
 
 const domContainer = document.querySelector('#productsList');
-ReactDOM.render(<Products/>, domContainer);
+if (domContainer){
+  ReactDOM.render(<Products/>, domContainer);
+}
+  
 
 const domContainerCart = document.querySelector('#cartList');
-ReactDOM.render(<Cart/>, domContainerCart);
+if (domContainerCart){
+  ReactDOM.render(<CartDisplay/>, domContainerCart);
+}
+
 
 

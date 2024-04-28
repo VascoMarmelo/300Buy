@@ -5,7 +5,7 @@ function RedirectButton({ href, name }){
     };
 
     return (
-        <button onClick={buttonClicked} className="btn" style={{"backgroundColor": "rgba(2, 171, 73)"}}>{name}</button>
+        <button onClick={buttonClicked} className="btn" style={{"color": "white", "backgroundColor": "rgba(2, 171, 73)"}}>{name}</button>
     )
 }
 
