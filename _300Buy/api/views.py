@@ -8,7 +8,7 @@ from django.core.management import call_command
 
 
 class ListCATEGORY(APIView):
-    """List all CATEGORY lists."""
+    """List all categories in DB"""
 
     def get(self, request):
         category = Category.objects
@@ -24,7 +24,9 @@ class ListCATEGORY(APIView):
     
 
 class ListPRODUCT(APIView):
-    """Details a PRODUCT lists."""
+    """Shows all products in DB"""
+
+    permission_classes = [] #disables permission
 
     def get(self, request):
         product = Product.objects
@@ -40,7 +42,7 @@ class ListPRODUCT(APIView):
             
 
 class DetailPRODUCT(APIView):
-    """Details a CATEGORY list"""
+    """Details a product by ID"""
 
     def get(self, request, product_id):
         product = get_object_or_404(Product, pk=product_id)
@@ -57,7 +59,7 @@ class DetailPRODUCT(APIView):
 
 
 class SearchPRODUCT(APIView):
-    """Details a PRODUCT lists."""
+    """Details all products that start with a specific string of letters"""
 
     def get(self, request, product_title):
         products = Product.objects.filter(title__startswith=product_title)
@@ -66,19 +68,12 @@ class SearchPRODUCT(APIView):
  
 
 class DetailCATEGORY(APIView):
-    """Details a CATEGORY list"""
+    """Details a category by ID"""
 
     def get(self, request, category_id):
         category = get_object_or_404(Category, pk=category_id)
         serializer = CategoryDetailSerializer(category, many=False)
         return Response(serializer.data)
-
-    '''
-    def delete(self, request, category_id):
-        category = get_object_or_404(Category, pk=category_id)
-        category.delete()
-        return Response(status=status.HTTP_204_NO_CONTENT)
-    '''
 
     def put(self, request, category_id):
         category = get_object_or_404(Category, pk=category_id)
@@ -90,7 +85,7 @@ class DetailCATEGORY(APIView):
     
 
 class DetailCART(APIView):
-    """Details a CART list"""
+    """Details the cart of the requested user"""
 
     def get(self, request):
         cart = Cart.objects.filter(user=request.user)
@@ -107,6 +102,7 @@ class DetailCART(APIView):
     
 
 class FillDB(APIView):
+    """Restarts DB"""
 
     def get(self, request):
         call_command('loaddata', 'inidb.json')
