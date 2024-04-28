@@ -1,3 +1,7 @@
+function getCsrfToken() {
+  const cookieValue = document.cookie.match('(?:^|;) csrftoken=([^;]*)');
+  return cookieValue ? decodeURIComponent(cookieValue[1]) : null;
+}
 
 function Products() {
     const [productsList, setProductsList] = React.useState([]);
@@ -57,9 +61,19 @@ function Product({product}){
 function AddToCart(product, cart){
 
   const btnClicked = () => {
-    fetch("api/carts", {method: "POST", body: JSON.stringify(product)}).then(response => {
-      if (!response.ok){
-        window.location.href = "/login";
+    const csrftoken = getCsrfToken();
+    fetch("api/carts/", 
+      {
+        method: "POST", 
+        headers: {
+          'Content-Type': 'application/json', // Set content type for JSON data
+        }, 
+        body: JSON.stringify(product)})
+        
+      .then(response => {
+      if (response.status !== 200 && response.status !== 201){
+        console.log(response.status); 
+        //window.location.href = "/login";
       }
       else{
         console.log("Tudo good");
