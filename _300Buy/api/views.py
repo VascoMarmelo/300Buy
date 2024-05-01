@@ -7,6 +7,7 @@ from .serializers import CategorySerializer, ProductDetailSerializer, CategoryDe
 from django.core.management import call_command
 
 
+
 class ListCATEGORY(APIView):
     """List all categories in DB"""
 

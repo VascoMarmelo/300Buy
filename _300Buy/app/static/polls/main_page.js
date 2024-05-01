@@ -1,3 +1,19 @@
+//Retirado da documentação do DJANGO https://docs.djangoproject.com/en/4.2/howto/csrf/
+function getCookie(name) {
+  let cookieValue = null;
+  if (document.cookie && document.cookie !== '') {
+      const cookies = document.cookie.split(';');
+      for (let i = 0; i < cookies.length; i++) {
+          const cookie = cookies[i].trim();
+          // Does this cookie string begin with the name we want?
+          if (cookie.substring(0, name.length + 1) === (name + '=')) {
+              cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+              break;
+          }
+      }
+  }
+  return cookieValue;
+}
 
 function Products() {
     const [productsList, setProductsList] = React.useState([]);
@@ -56,13 +72,18 @@ function Product({product}){
 
 function AddToCart(product, cart){
 
+  const csrfToken = getCookie('csrftoken');
+
+  console.log(product.product);
+
   const btnClicked = () => {
-    fetch("api/carts/", {method: "POST", body: JSON.stringify(product)}).then(response => {
+    fetch("api/carts", {method: "POST", body: JSON.stringify(product)}).then(response => {
       if (!response.ok){
         window.location.href = "/login";
       }
       else{
-        console.log("Tudo good");
+        console.log(response);
+        
       }
     })
   }
