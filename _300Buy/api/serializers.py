@@ -29,7 +29,7 @@ class CategoryDetailSerializer(serializers.ModelSerializer):
 
 
 class CartDetailSerializer(serializers.ModelSerializer):
-    cart_products = ProductSerializer(source='product')
+    cart_products = ProductDetailSerializer(source='product')
     class Meta:
         model = Cart
         fields = ['user', 'id', 'amount', 'paid', 'cart_products']
