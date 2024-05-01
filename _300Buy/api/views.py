@@ -101,7 +101,6 @@ class DetailCART(APIView):
     def post(self, request):
         request.data['user'] = request.user.id
         serializer = CartDetailSerializer(data=request.data)
-        print("Detail ", request.data)
         if serializer.is_valid():
             serializer.create(request.data)
             return Response(serializer.data, status.HTTP_201_CREATED)

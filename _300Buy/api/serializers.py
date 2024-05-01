@@ -35,8 +35,6 @@ class CartDetailSerializer(serializers.ModelSerializer):
         fields = ['user', 'id', 'amount', 'paid', 'cart_products']
 
     def create(self, validated_data):
-        print("data:", validated_data)
-
         new_data = {
             'user' : User.objects.get(id=validated_data['user']),
             'paid' : validated_data['paid'],
@@ -44,7 +42,6 @@ class CartDetailSerializer(serializers.ModelSerializer):
             'product' : Product.objects.get(id=validated_data['cart_products']['id'])
         }
 
-        print("data2: ", new_data)
         return super().create(new_data)
 
 
