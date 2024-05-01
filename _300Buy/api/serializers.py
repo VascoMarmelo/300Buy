@@ -7,7 +7,10 @@ class CategorySerializer(serializers.ModelSerializer):
         fields = '__all__' 
 
 class ProductDetailSerializer(serializers.ModelSerializer):
-    category = serializers.CharField(source='category.title')
+    category = serializers.SlugRelatedField(
+        read_only=True,
+        slug_field='title'
+    )
     class Meta:
         model = Product
         fields = ['id', 'title', 'category']      
