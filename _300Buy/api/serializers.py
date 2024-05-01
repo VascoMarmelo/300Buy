@@ -6,6 +6,7 @@ class CategorySerializer(serializers.ModelSerializer):
         model = Category
         fields = '__all__' 
 
+# Slug
 class ProductDetailSerializer(serializers.ModelSerializer):
     category = serializers.SlugRelatedField(
         read_only=True,
