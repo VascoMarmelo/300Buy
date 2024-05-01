@@ -93,8 +93,8 @@ class DetailCART(APIView):
         serializer = CartDetailSerializer(cart, many=True)
         return Response(serializer.data)
 
-    def delete(self, request, cart_id):
-        cart = get_object_or_404(Cart, pk=cart_id, user=request.user)
+    def delete(self, request):
+        cart = get_object_or_404(Cart, pk=request.data['cart_id'], user=request.user)
         cart.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
 

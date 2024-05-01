@@ -15,6 +15,8 @@ function getCookie(name) {
   return cookieValue;
 }
 
+
+
 function Products() {
     const [productsList, setProductsList] = React.useState([]);
     const searchParams = new URLSearchParams(window.location.search);
@@ -70,11 +72,9 @@ function Product({product}){
 }
 
 
-function AddToCart(product, cart){
+function AddToCart(product){
 
   const csrfToken = getCookie('csrftoken');
-
-  console.log(product.product);
 
   const btnClicked = () => {
     fetch("api/carts/", 
@@ -106,7 +106,9 @@ function AddToCart(product, cart){
   )
 }
 
-function CartDisplay({username}){
+
+
+function CartDisplay(){
 
   const [cart, setCart] = React.useState([]);
 
@@ -118,8 +120,6 @@ function CartDisplay({username}){
         setCart(json);
     }), []);
 
-  console.log(username);
-
   return (
       <div className="container ">
           <div style={{textAlign: 'center'}}>
@@ -128,7 +128,7 @@ function CartDisplay({username}){
           <div className="row d-flex justify-content-center">
               {       
               cart.map(cartItemData => {
-                  return <CartItem key={cartItemData.id} product={cartItemData.cart_products} />
+                  return <CartItem key={cartItemData.id} id={cartItemData.id} product={cartItemData.cart_products} />
               })}
           </div>
       </div>
@@ -136,15 +136,42 @@ function CartDisplay({username}){
 
 }
 
-function CartItem({product}){
+function CartItem({id, product}){
 
   return (
       <div className="col-sm" style={{'display': 'flex', 'justifyContent': 'center', 'alignItems': 'center', textAlign: 'center'}}>
-        <div style={{display: 'flex', flexDirection: 'column'}}>
+        <div style={{display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
           <img src="https://i.imgur.com/FKLhQ3T.png" style={{height: '10em', width: '10em'}}></img>
-          <p style={{'justifyContent': 'center'}} className="row">{product.title}</p>   
+          <p style={{'justifyContent': 'center'}} className="row">{product.title}</p>  
+          <RemoveCartItem id={id}/> 
         </div>
+        
       </div>
+  )
+}
+
+function RemoveCartItem({id}){
+
+  const csrfToken = getCookie('csrftoken');
+
+  const btnClicked = () => {
+    fetch("api/carts/", 
+      {
+        method: "DELETE", 
+        headers: {
+          'Content-Type': 'application/json', // Set content type for JSON data
+          'X-CSRFToken': csrfToken, 
+        }, 
+        credentials: "same-origin",
+        body: JSON.stringify({
+          'cart_id' : id
+        })})
+        .then(console.log("DELETED"))
+      
+  }
+
+  return (
+    <button onClick={btnClicked} className="btn" style={{width: "8em", height: "2.5em", backgroundColor: "rgba(2, 171, 73)"}}>Remove</button>
   )
 }
 
