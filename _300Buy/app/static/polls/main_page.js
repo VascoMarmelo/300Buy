@@ -92,8 +92,7 @@ function AddToCart(product, cart){
         })})
       .then(response => {
       if (response.status !== 200 && response.status !== 201){
-        console.log(response.status); 
-        //window.location.href = "/login";
+        window.location.href = "/login";
       }
       else{
         console.log(response);
