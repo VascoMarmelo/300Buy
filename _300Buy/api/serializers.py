@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from app.models import Product, Category, Cart
+from app.models import Product, Category, Cart, User
 
 class CategorySerializer(serializers.ModelSerializer):
     class Meta:
@@ -35,7 +35,18 @@ class CartDetailSerializer(serializers.ModelSerializer):
         fields = ['user', 'id', 'amount', 'paid', 'cart_products']
 
     def create(self, validated_data):
-        return Cart.objects.create(**validated_data)
+        print("data:", validated_data)
+
+        new_data = {
+            'user' : User.objects.get(id=validated_data['user']),
+            'paid' : validated_data['paid'],
+            'amount' : validated_data['amount'],
+            'product' : Product.objects.get(id=validated_data['cart_products']['id'])
+        }
+
+        print("data2: ", new_data)
+        return super().create(new_data)
+
 
 
 
