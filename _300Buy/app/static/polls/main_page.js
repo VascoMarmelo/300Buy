@@ -1,6 +1,18 @@
-function getCsrfToken() {
-  const cookieValue = document.cookie.match('(?:^|;) csrftoken=([^;]*)');
-  return cookieValue ? decodeURIComponent(cookieValue[1]) : null;
+//Retirado da documentação do DJANGO https://docs.djangoproject.com/en/4.2/howto/csrf/
+function getCookie(name) {
+  let cookieValue = null;
+  if (document.cookie && document.cookie !== '') {
+      const cookies = document.cookie.split(';');
+      for (let i = 0; i < cookies.length; i++) {
+          const cookie = cookies[i].trim();
+          // Does this cookie string begin with the name we want?
+          if (cookie.substring(0, name.length + 1) === (name + '=')) {
+              cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+              break;
+          }
+      }
+  }
+  return cookieValue;
 }
 
 function Products() {
@@ -60,23 +72,32 @@ function Product({product}){
 
 function AddToCart(product, cart){
 
+  const csrfToken = getCookie('csrftoken');
+
+  console.log(product.product);
+
   const btnClicked = () => {
-    const csrftoken = getCsrfToken();
     fetch("api/carts/", 
       {
         method: "POST", 
         headers: {
           'Content-Type': 'application/json', // Set content type for JSON data
+          'X-CSRFToken': csrfToken, 
         }, 
-        body: JSON.stringify(product)})
-        
+        credentials: "same-origin",
+        body: JSON.stringify({
+          'cart_products' : product.product,
+          'amount': 1,
+          'paid': false,
+        })})
       .then(response => {
       if (response.status !== 200 && response.status !== 201){
         console.log(response.status); 
         //window.location.href = "/login";
       }
       else{
-        console.log("Tudo good");
+        console.log(response);
+        
       }
     })
   }
