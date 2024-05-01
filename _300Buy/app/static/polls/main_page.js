@@ -77,9 +77,23 @@ function AddToCart(product, cart){
   console.log(product.product);
 
   const btnClicked = () => {
-    fetch("api/carts", {method: "POST", body: JSON.stringify(product)}).then(response => {
-      if (!response.ok){
-        window.location.href = "/login";
+    fetch("api/carts/", 
+      {
+        method: "POST", 
+        headers: {
+          'Content-Type': 'application/json', // Set content type for JSON data
+          'X-CSRFToken': csrfToken, 
+        }, 
+        credentials: "same-origin",
+        body: JSON.stringify({
+          'cart_products' : product.product,
+          'amount': 1,
+          'paid': false,
+        })})
+      .then(response => {
+      if (response.status !== 200 && response.status !== 201){
+        console.log(response.status); 
+        //window.location.href = "/login";
       }
       else{
         console.log(response);
