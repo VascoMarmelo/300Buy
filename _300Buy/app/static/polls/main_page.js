@@ -60,7 +60,7 @@ function Product({product}){
   return (
       <div className="col-sm" style={{'display': 'flex', 'justifyContent': 'center', 'alignItems': 'center', textAlign: 'center'}}>
         <div style={{display: 'flex', flexDirection: 'column'}}>
-          <img src="https://i.imgur.com/FKLhQ3T.png" style={{height: '10em', width: '10em'}}></img>
+          <img src="https://i.imgur.com/1o3KcN6.png" style={{height: '10em', width: '10em'}}></img>
           <p style={{'justifyContent': 'center'}} className="row">{product.title}</p>
           <div style={{'justifyContent': 'center'}}>
             <AddToCart product={product}/>           
@@ -141,7 +141,7 @@ function CartItem({id, product}){
   return (
       <div className="col-sm" style={{'display': 'flex', 'justifyContent': 'center', 'alignItems': 'center', textAlign: 'center'}}>
         <div style={{display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
-          <img src="https://i.imgur.com/FKLhQ3T.png" style={{height: '10em', width: '10em'}}></img>
+          <img src="https://i.imgur.com/1o3KcN6.png" style={{height: '10em', width: '10em'}}></img>
           <p style={{'justifyContent': 'center'}} className="row">{product.title}</p>  
           <RemoveCartItem id={id}/> 
         </div>
@@ -166,7 +166,6 @@ function RemoveCartItem({id}){
         body: JSON.stringify({
           'cart_id' : id
         })})
-        .then(console.log("DELETED"))
       
   }
 
