@@ -8,13 +8,14 @@ Backend: Django
 Frontend: React
 
  
-
+----
 Dados dos admin
 
 User: admin
 
 Password: 1234
 
+----
 Dados dos utilizadores comuns:
 
 User: tak
