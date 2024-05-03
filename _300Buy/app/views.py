@@ -43,13 +43,3 @@ def app_logout(request):
     logout(request)
     return redirect('app_login')
 
-
-def add_product(request, category_id):
-    if request.user.is_superuser:
-        product_title = request.POST.get('product_title')
-        category = get_object_or_404(Category, pk=category_id)
-        product = Product(title=product_title, category=category)
-        product.save()
-        return redirect('app_index') # Temporário
-
-
