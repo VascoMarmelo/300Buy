@@ -2,7 +2,6 @@ function RedirectText({ href, name }){
 
     const buttonClicked = () => {
         window.location.href = href;
-        console.log("HJDHKksjadfkj");
     }; 
 
     return (

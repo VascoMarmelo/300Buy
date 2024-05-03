@@ -62,6 +62,8 @@ class DetailPRODUCT(APIView):
 class SearchPRODUCT(APIView):
     """Details all products that start with a specific string of letters"""
 
+    permission_classes = [] #disables permission
+
     def get(self, request, product_title):
         products = Product.objects.filter(title__startswith=product_title)
         serializer = ProductDetailSerializer(products, many=True)

@@ -20,37 +20,25 @@ function RedirectLogo({ href }){
     )
 }
 
-function SearchFunction({ href }){
+function SearchFunction(){
 
     return (
         <div className="container row" style={{textAlign:"center"}} >
-            <SearchBar href={href}/>
+            <SearchBar/>
             <div className='col-sm-1'/>
-            <SearchButton href={href}/>
+            <SearchButton/>
         </div>
     )
 }
 
-function SearchBar({ href }){
+function SearchBar(){
 
     return (
         <input id="searchBoxMain" type="text" className="col-sm-8" style={{height: "2.5em"}}></input>
     )
 }
 
-function LogoutButton(){
-
-    const buttonClicked = () => {
-        window.location.href = href;
-    };
-
-
-    return (
-        <button onClick={btnClicked} className="btn" style={{width: "6em", height: "2.5em", backgroundColor: "rgba(2, 171, 73)"}}>Logout</button>
-    )
-}
-
-function SearchButton({ href }){
+function SearchButton(){
 
     const btnClicked = () => {
         window.location.href = "/?filter=" + document.getElementById('searchBoxMain').value;
@@ -80,7 +68,7 @@ const domContainerLogoImg = document.querySelector('#logo');
 ReactDOM.render(<RedirectLogo href={'/'} />, domContainerLogoImg);
 
 const domContainerSearchFunction = document.querySelector('#searchBar');
-ReactDOM.render(<SearchFunction href={'/'} />, domContainerSearchFunction);
+ReactDOM.render(<SearchFunction/>, domContainerSearchFunction);
 
 const domContainerCart = document.querySelector('#searchBar');
-ReactDOM.render(<SearchFunction href={'/'} />, domContainerSearchFunction);
+ReactDOM.render(<SearchFunction/>, domContainerSearchFunction);

@@ -16,12 +16,12 @@ function getCookie(name) {
 }
 
 
-
 function Products() {
     const [productsList, setProductsList] = React.useState([]);
     const searchParams = new URLSearchParams(window.location.search);
     let productFilter = searchParams.get('filter');
 
+    //Uso argumento get "filtro", para uma filtragem do get
     if (productFilter == null){
       productFilter = "";
     }
@@ -29,12 +29,10 @@ function Products() {
       productFilter = "/" + productFilter; 
     }
 
-    //Adicionar o filtro correto
     React.useEffect(() => 
         fetch("api/products" + productFilter)
         .then(response => response.json())
         .then(json => {
-          console.log(json);
           setProductsList(json);
       }), []);
 
@@ -67,7 +65,7 @@ function Product({product}){
           </div>     
         </div>
       </div>
-      
+   
   )
 }
 
@@ -94,10 +92,6 @@ function AddToCart(product){
       if (response.status !== 200 && response.status !== 201){
         window.location.href = "/login";
       }
-      else{
-        console.log(response);
-        
-      }
     })
   }
 
@@ -116,7 +110,6 @@ function CartDisplay(){
       fetch("api/carts", {method : "GET"})
       .then(response => response.json())
       .then(json => {
-        console.log(json);
         setCart(json);
     }), []);
 
